@@ -52,7 +52,8 @@ class Board {
     }
   }
 
-  public boolean movePiece(int fromX, int fromY, int toX, int toY, GameState currentState) {
+  public boolean makeMove(int fromX, int fromY, int toX, int toY, GameState currentState) {
+    // Controleer of de coördinaten binnen de grenzen liggen
     if (!isWithinBounds(fromX, fromY) || !isWithinBounds(toX, toY)) {
       System.out.println("Invalid move: Coordinates out of bounds.");
       return false;
@@ -85,7 +86,7 @@ class Board {
     }
 
     // Normale beweging voor een King
-    if ((piece == 'K' || piece == 'k') && Math.abs(dx) == 1 && Math.abs(dy) == 1) {
+    else if ((piece == 'K' || piece == 'k') && Math.abs(dx) == 1 && Math.abs(dy) == 1) {
       grid[toX][toY] = piece;
       grid[fromX][fromY] = '.';
       return true;
@@ -95,15 +96,14 @@ class Board {
     if (Math.abs(dx) == 2 && Math.abs(dy) == 2) {
       int middleX = fromX + dx / 2;
       int middleY = fromY + dy / 2;
-
       char middlePiece = grid[middleX][middleY];
       if ((currentPlayer.equals("White") && (middlePiece == 'B' || middlePiece == 'k')) ||
           (currentPlayer.equals("Black") && (middlePiece == 'W' || middlePiece == 'K'))) {
-            if (currentPlayer.equals("White")) {
-              CheckersGame.blackPieces--;
-            } else {
-              CheckersGame.whitePieces--;
-            }
+        if (currentPlayer.equals("White")) {
+          CheckersGame.blackPieces--;
+        } else {
+          CheckersGame.whitePieces--;
+        }
         grid[toX][toY] = piece;
         grid[fromX][fromY] = '.';
         grid[middleX][middleY] = '.';
@@ -129,4 +129,7 @@ class Board {
     }
   }
 
+  public char[][] getGrid() {
+    return grid;
+  }
 }

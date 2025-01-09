@@ -10,7 +10,7 @@ class CheckersGameSize8 extends GameTemplate {
   @Override
   protected void initializeGame() {
     currentState = new PlayerTurnState("Black"); // Start met White
-    System.out.println("Game initialized. Both sides have 10 moves");
+    System.out.println("Game initialized. Both sides have " + turns + " moves");
     board.printBoard(); // Print het bord alleen hier bij start
   }
 
@@ -46,7 +46,7 @@ class CheckersGameSize8 extends GameTemplate {
   protected boolean isGameOver() {
     // Simple game-over condition (can be expanded)
     if (turns <= 0) {
-        return true;
+      return true;
     }
     return false;
   }
