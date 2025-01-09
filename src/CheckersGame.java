@@ -30,7 +30,7 @@ class CheckersGame extends GameTemplate {
     if (moveProxy.makeMove(fromX, fromY, toX, toY, playerTurn.getState())) {
       board.printBoard(); // Alleen printen bij een geldige zet
 
-      playerTurn.changeState();
+      playerTurn.endTurn();
     } else {
       System.out.println("Invalid move. Try again.");
     }

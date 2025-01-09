@@ -21,7 +21,7 @@ class CheckersGameSize8 extends GameTemplate {
     playerTurn.play();
 
     Scanner scanner = new Scanner(System.in);
-    System.out.println((turns / 2) + " turns left");
+    System.out.println(((turns + 1) / 2) + " turns left");
     System.out.println("Enter move (fromX fromY toX toY):");
     int fromX = scanner.nextInt();
     int fromY = scanner.nextInt();
@@ -32,7 +32,13 @@ class CheckersGameSize8 extends GameTemplate {
     if (moveProxy.makeMove(fromX, fromY, toX, toY, playerTurn.getState())) {
       board.printBoard(); // Alleen printen bij een geldige zet
 
-      playerTurn.changeState();
+      if (playerTurn.getState().getName() == "Black") {
+        WhitePlays newState = new WhitePlays(20, 20);
+        playerTurn.changeState(newState);
+      } else {
+        BlackPlays newState = new BlackPlays(20, 20);
+        playerTurn.changeState(newState);
+      }
       turns--;
     } else {
       System.out.println("Invalid move. Try again.");

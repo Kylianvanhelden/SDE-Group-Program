@@ -5,20 +5,20 @@ abstract class State {
       this.playerTurn = player;
   }
 
-  protected String player;
+  protected String name;
 
   protected int pieces;
   
   protected int turns;
 
-  public State(String player, int pieces, int turns) {
-    this.player = player;
+  public State(String name, int pieces, int turns) {
+    this.name = name;
     this.pieces = pieces;
     this.turns = turns;
   }
 
-  public String getPlayer() {
-    return player;
+  public String getName() {
+    return name;
   };
 
   protected abstract void play();
@@ -29,6 +29,6 @@ abstract class State {
 
   public void setState(State newState) {
     newState.setPlayerTurn(this.playerTurn);
-    this.playerTurn.changeState();
+    this.playerTurn.changeState(newState);
   }
 }

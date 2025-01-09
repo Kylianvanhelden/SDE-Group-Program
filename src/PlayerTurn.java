@@ -10,15 +10,20 @@ class PlayerTurn {
     return state;
   }
 
-  public void changeState() {
-    this.state.endTurn();
+  public void changeState(State newState) {
+    this.state = newState;
+    System.out.println("good job");
   }
 
   public void play() {
     this.state.play();
   }
 
+  public void endTurn() {
+    this.state.endTurn();
+  }
+
   public void gameOver() {
-    throw new UnsupportedOperationException("Unimplemented method 'gameOver'");
+    this.state.gameOver();
   }
 }

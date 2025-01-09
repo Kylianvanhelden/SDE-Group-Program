@@ -59,7 +59,7 @@ class Board {
     }
 
     char piece = grid[fromX][fromY];
-    String currentPlayer = (currentState).getPlayer();
+    String currentPlayer = (currentState).getName();
 
     // Controleer of het huidige stuk bij de speler hoort
     if ((currentPlayer.equals("White") && piece != 'W' && piece != 'K') ||

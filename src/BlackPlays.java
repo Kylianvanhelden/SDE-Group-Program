@@ -1,16 +1,17 @@
 public class BlackPlays extends State {
     public BlackPlays(int pieces, int turns) {
-        super("Black", 20, 20);
+        super("Black", pieces, turns);
     }
     @Override
     protected void play() {
-        System.out.println(player + "'s turn.");
+        System.out.println(name + "'s turn.");
     }
 
     protected void endTurn() {
-        WhitePlays whitePlays = new WhitePlays(pieces, turns);
-        setState(whitePlays);
-        whitePlays.play();
+        WhitePlays whitePlays = new WhitePlays(pieces, (turns - 1));
+        whitePlays.setPlayerTurn(playerTurn);
+        playerTurn.changeState(whitePlays);
+        //setState(whitePlays);
     }
 
     @Override
