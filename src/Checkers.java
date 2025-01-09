@@ -1,7 +1,10 @@
 public class Checkers {
   public static void main(String[] args) {
-    RendererBridge rendererBridge = new RendererBridge(new ConsoleRenderer());
-    rendererBridge.display(10);
+    
+    int size = CheckersGame.boardSize();
+    RendererBridge rendererBridge = new RendererBridge(new ConsoleRenderer(), size);
+    rendererBridge.display();
+
 
     CheckersGame game = new CheckersGame();
     game.playGame();

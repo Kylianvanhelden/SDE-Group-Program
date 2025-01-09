@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
 class CheckersGame extends GameTemplate {
-  private final MoveProxy moveProxy = new MoveProxy();
-  private final Board board = Board.getInstance(10); // Bord-instance ophalen
+  public static int size = 10;
+  private final MoveProxy moveProxy = new MoveProxy(size);
+  private final Board board = Board.getInstance(size); // Bord-instance ophalen
   private GameState currentState;
 
   @Override
@@ -44,9 +45,7 @@ class CheckersGame extends GameTemplate {
     return false;
   }
 
-  @Override
-  protected void boardSize() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'boardSize'");
+  public static int boardSize() {
+    return size;
   }
 }
