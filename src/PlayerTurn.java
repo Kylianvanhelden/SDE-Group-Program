@@ -10,12 +10,12 @@ class PlayerTurn {
     return state;
   }
 
-  public void endTurn() {
+  public void changeState() {
     this.state.endTurn();
   }
 
   public void play() {
-    //System.out.println(player + "'s turn.");
+    this.state.play();
   }
 
   public void gameOver() {

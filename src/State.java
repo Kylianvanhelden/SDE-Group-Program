@@ -29,6 +29,6 @@ abstract class State {
 
   public void setState(State newState) {
     newState.setPlayerTurn(this.playerTurn);
-    this.playerTurn.endTurn();
+    this.playerTurn.changeState();
   }
 }
