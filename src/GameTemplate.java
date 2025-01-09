@@ -1,4 +1,6 @@
 abstract class GameTemplate {
+  protected abstract void boardSize();
+
   protected abstract void initializeGame();
 
   protected abstract void playTurn();

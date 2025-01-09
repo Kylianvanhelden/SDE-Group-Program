@@ -1,6 +1,6 @@
 class ConsoleRenderer implements Renderer {
   @Override
-  public void render() {
-    Board.getInstance().printBoard();
+  public void render(int size) {
+    Board.getInstance(size).printBoard();
   }
 }

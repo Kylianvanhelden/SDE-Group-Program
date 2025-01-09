@@ -1,3 +1,3 @@
 interface Renderer {
-  void render();
+  void render(int size);
 }

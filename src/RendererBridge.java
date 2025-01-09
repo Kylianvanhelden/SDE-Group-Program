@@ -5,7 +5,7 @@ class RendererBridge {
     this.renderer = renderer;
   }
 
-  public void display() {
-    renderer.render();
+  public void display(int size) {
+    renderer.render(size);
   }
 }

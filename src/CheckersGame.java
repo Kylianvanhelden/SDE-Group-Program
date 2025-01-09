@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 class CheckersGame extends GameTemplate {
   private final MoveProxy moveProxy = new MoveProxy();
-  private final Board board = Board.getInstance(); // Bord-instance ophalen
+  private final Board board = Board.getInstance(10); // Bord-instance ophalen
   private GameState currentState;
 
   @Override
@@ -42,5 +42,11 @@ class CheckersGame extends GameTemplate {
   protected boolean isGameOver() {
     // Simple game-over condition (can be expanded)
     return false;
+  }
+
+  @Override
+  protected void boardSize() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'boardSize'");
   }
 }

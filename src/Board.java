@@ -2,14 +2,14 @@ class Board {
   private static Board instance;
   private final char[][] grid;
 
-  private Board() {
-    grid = new char[10][10]; // bord size is nu 10x10
+  private Board(int size) {
+    grid = new char[size][size]; // bord size is nu 10x10
     initializeBoard();
   }
 
-  public static Board getInstance() {
+  public static Board getInstance(int size) {
     if (instance == null) {
-      instance = new Board();
+      instance = new Board(size);
     }
     return instance;
   }
