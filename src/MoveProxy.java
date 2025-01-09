@@ -7,7 +7,7 @@ class MoveProxy {
     this.size = size;
   }
 
-  public boolean makeMove(int fromX, int fromY, int toX, int toY, GameState currentState) {
+  public boolean makeMove(int fromX, int fromY, int toX, int toY, State currentState) {
     return board.movePiece(fromX, fromY, toX, toY, currentState);
   }
 }

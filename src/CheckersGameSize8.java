@@ -4,19 +4,19 @@ class CheckersGameSize8 extends GameTemplate {
   public static int size = 8;
   private final MoveProxy moveProxy = new MoveProxy(size);
   private final Board board = Board.getInstance(size); // Bord-instance ophalen
-  private GameState currentState;
-  private int turns = 5;
+  private PlayerTurn playerTurn;
+  private int turns = 20;
 
   @Override
   protected void initializeGame() {
-    currentState = new PlayerTurnState("Black"); // Start met White
+    playerTurn = new PlayerTurn(new BlackPlays(12, 20));
     System.out.println("Game initialized. Both sides have 10 moves");
     board.printBoard(); // Print het bord alleen hier bij start
   }
 
   @Override
   protected void playTurn() {
-    currentState.play();
+    playerTurn.play();
 
     Scanner scanner = new Scanner(System.in);
     System.out.println((turns / 2) + " turns left");
@@ -27,15 +27,10 @@ class CheckersGameSize8 extends GameTemplate {
     int toY = scanner.nextInt();
 
     // Pass currentState to moveProxy.makeMove
-    if (moveProxy.makeMove(fromX, fromY, toX, toY, currentState)) {
+    if (moveProxy.makeMove(fromX, fromY, toX, toY, playerTurn.getState())) {
       board.printBoard(); // Alleen printen bij een geldige zet
 
-      if (currentState instanceof PlayerTurnState) {
-        String currentPlayer = ((PlayerTurnState) currentState).getPlayer();
-        currentState = currentPlayer.equals("White")
-            ? new PlayerTurnState("Black") // Wissel naar Black
-            : new PlayerTurnState("White"); // Wissel naar White
-      }
+      playerTurn.endTurn();
       turns--;
     } else {
       System.out.println("Invalid move. Try again.");

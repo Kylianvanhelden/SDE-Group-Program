@@ -4,20 +4,20 @@ class CheckersGame extends GameTemplate {
   public static int size = 10;
   private final MoveProxy moveProxy = new MoveProxy(size);
   private final Board board = Board.getInstance(size); // Bord-instance ophalen
-  private GameState currentState;
+  private PlayerTurn playerTurn;
   public static int whitePieces = ((size / 2) * ((size / 2) - 1));
   public static int blackPieces = ((size / 2) * ((size / 2) - 1));
 
   @Override
   protected void initializeGame() {
-    currentState = new PlayerTurnState("White"); // Start met White
+    playerTurn = new PlayerTurn(new WhitePlays(20, 10)); // Start met White
     System.out.println("Game initialized.");
     board.printBoard(); // Print het bord alleen hier bij start
   }
 
   @Override
   protected void playTurn() {
-    currentState.play();
+    playerTurn.play();
     Scanner scanner = new Scanner(System.in);
 
     System.out.println("Enter move (fromX fromY toX toY):");
@@ -27,15 +27,10 @@ class CheckersGame extends GameTemplate {
     int toY = scanner.nextInt();
 
     // Pass currentState to moveProxy.makeMove
-    if (moveProxy.makeMove(fromX, fromY, toX, toY, currentState)) {
+    if (moveProxy.makeMove(fromX, fromY, toX, toY, playerTurn.getState())) {
       board.printBoard(); // Alleen printen bij een geldige zet
 
-      if (currentState instanceof PlayerTurnState) {
-        String currentPlayer = ((PlayerTurnState) currentState).getPlayer();
-        currentState = currentPlayer.equals("White")
-            ? new PlayerTurnState("Black") // Wissel naar Black
-            : new PlayerTurnState("White"); // Wissel naar White
-      }
+      playerTurn.endTurn();
     } else {
       System.out.println("Invalid move. Try again.");
     }
@@ -43,6 +38,7 @@ class CheckersGame extends GameTemplate {
 
   @Override
   protected boolean isGameOver() {
+    //state opvragen inplaats van boolean
     if (whitePieces == 0 || blackPieces == 0) {
       return true;
     }

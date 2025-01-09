@@ -52,14 +52,14 @@ class Board {
     }
   }
 
-  public boolean movePiece(int fromX, int fromY, int toX, int toY, GameState currentState) {
+  public boolean movePiece(int fromX, int fromY, int toX, int toY, State currentState) {
     if (!isWithinBounds(fromX, fromY) || !isWithinBounds(toX, toY)) {
       System.out.println("Invalid move: Coordinates out of bounds.");
       return false;
     }
 
     char piece = grid[fromX][fromY];
-    String currentPlayer = ((PlayerTurnState) currentState).getPlayer();
+    String currentPlayer = (currentState).getPlayer();
 
     // Controleer of het huidige stuk bij de speler hoort
     if ((currentPlayer.equals("White") && piece != 'W' && piece != 'K') ||
