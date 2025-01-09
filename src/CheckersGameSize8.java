@@ -1,25 +1,25 @@
 import java.util.Scanner;
 
-class CheckersGame extends GameTemplate {
-  public static int size = 10;
+class CheckersGameSize8 extends GameTemplate {
+  public static int size = 8;
   private final MoveProxy moveProxy = new MoveProxy(size);
   private final Board board = Board.getInstance(size); // Bord-instance ophalen
   private GameState currentState;
-  public static int whitePieces = ((size / 2) * ((size / 2) - 1));
-  public static int blackPieces = ((size / 2) * ((size / 2) - 1));
+  private int turns = 5;
 
   @Override
   protected void initializeGame() {
-    currentState = new PlayerTurnState("White"); // Start met White
-    System.out.println("Game initialized.");
+    currentState = new PlayerTurnState("Black"); // Start met White
+    System.out.println("Game initialized. Both sides have 10 moves");
     board.printBoard(); // Print het bord alleen hier bij start
   }
 
   @Override
   protected void playTurn() {
     currentState.play();
-    Scanner scanner = new Scanner(System.in);
 
+    Scanner scanner = new Scanner(System.in);
+    System.out.println((turns / 2) + " turns left");
     System.out.println("Enter move (fromX fromY toX toY):");
     int fromX = scanner.nextInt();
     int fromY = scanner.nextInt();
@@ -36,6 +36,7 @@ class CheckersGame extends GameTemplate {
             ? new PlayerTurnState("Black") // Wissel naar Black
             : new PlayerTurnState("White"); // Wissel naar White
       }
+      turns--;
     } else {
       System.out.println("Invalid move. Try again.");
     }
@@ -43,8 +44,9 @@ class CheckersGame extends GameTemplate {
 
   @Override
   protected boolean isGameOver() {
-    if (whitePieces == 0 || blackPieces == 0) {
-      return true;
+    // Simple game-over condition (can be expanded)
+    if (turns <= 0) {
+        return true;
     }
     return false;
   }

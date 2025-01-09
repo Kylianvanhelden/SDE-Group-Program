@@ -10,6 +10,12 @@ abstract class GameTemplate {
     while (!isGameOver()) {
       playTurn();
     }
-    System.out.println("Game Over!");
+    if (CheckersGame.blackPieces < CheckersGame.whitePieces) {
+      System.out.println("White has won, Game Over!");
+    } else if (CheckersGame.whitePieces < CheckersGame.blackPieces) {
+      System.out.println("Black has won, Game over");
+    } else {
+      System.out.println("Draw, Game Over!");
+    }
   }
 }

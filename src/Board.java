@@ -99,6 +99,11 @@ class Board {
       char middlePiece = grid[middleX][middleY];
       if ((currentPlayer.equals("White") && (middlePiece == 'B' || middlePiece == 'k')) ||
           (currentPlayer.equals("Black") && (middlePiece == 'W' || middlePiece == 'K'))) {
+            if (currentPlayer.equals("White")) {
+              CheckersGame.blackPieces--;
+            } else {
+              CheckersGame.whitePieces--;
+            }
         grid[toX][toY] = piece;
         grid[fromX][fromY] = '.';
         grid[middleX][middleY] = '.';
