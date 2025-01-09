@@ -7,14 +7,8 @@ abstract class State {
 
   protected String name;
 
-  protected int pieces;
-  
-  protected int turns;
-
-  public State(String name, int pieces, int turns) {
+  public State(String name) {
     this.name = name;
-    this.pieces = pieces;
-    this.turns = turns;
   }
 
   public String getName() {

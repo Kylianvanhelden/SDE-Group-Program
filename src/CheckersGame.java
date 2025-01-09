@@ -4,13 +4,14 @@ class CheckersGame extends GameTemplate {
   public static int size = 10;
   private final MoveProxy moveProxy = new MoveProxy(size);
   private final Board board = Board.getInstance(size); // Bord-instance ophalen
-  private PlayerTurn playerTurn;
+  private State currentPlayer = new WhitePlays();
+  private PlayerTurn playerTurn = new PlayerTurn(currentPlayer);
   public static int whitePieces = ((size / 2) * ((size / 2) - 1));
   public static int blackPieces = ((size / 2) * ((size / 2) - 1));
 
   @Override
   protected void initializeGame() {
-    playerTurn = new PlayerTurn(new WhitePlays(20, 10)); // Start met White
+    currentPlayer.setPlayerTurn(playerTurn);
     System.out.println("Game initialized.");
     board.printBoard(); // Print het bord alleen hier bij start
   }
@@ -34,7 +35,6 @@ class CheckersGame extends GameTemplate {
     } else {
       System.out.println("Invalid move. Try again.");
     }
-    System.out.println(playerTurn.getState() + " is the state");
   }
 
   @Override
@@ -44,6 +44,11 @@ class CheckersGame extends GameTemplate {
       return true;
     }
     return false;
+  }
+
+  protected void endGame() {
+    playerTurn.endTurn();
+    playerTurn.gameOver();
   }
 
   public static int boardSize() {

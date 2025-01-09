@@ -1,6 +1,6 @@
 public class BlackPlays extends State {
-    public BlackPlays(int pieces, int turns) {
-        super("Black", pieces, turns);
+    public BlackPlays() {
+        super("Black");
     }
     @Override
     protected void play() {
@@ -8,15 +8,13 @@ public class BlackPlays extends State {
     }
 
     protected void endTurn() {
-        WhitePlays whitePlays = new WhitePlays(pieces, (turns - 1));
-        whitePlays.setPlayerTurn(playerTurn);
-        playerTurn.changeState(whitePlays);
-        //setState(whitePlays);
+        WhitePlays whitePlays = new WhitePlays();
+        //playerTurn.changeState(whitePlays);
+        setState(whitePlays);
     }
 
     @Override
     protected void gameOver() {
-        // TODO Auto-generated method stub
-        
+        System.out.println("Black has won, Game over!");
     }
 }

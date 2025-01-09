@@ -12,7 +12,6 @@ class PlayerTurn {
 
   public void changeState(State newState) {
     this.state = newState;
-    System.out.println("good job");
   }
 
   public void play() {

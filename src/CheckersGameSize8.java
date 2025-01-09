@@ -5,12 +5,13 @@ class CheckersGameSize8 extends GameTemplate {
   private int turns = 20;
   private final MoveProxy moveProxy = new MoveProxy(size);
   private final Board board = Board.getInstance(size); // Bord-instance ophalen
-  private State currentPlayer = new BlackPlays(((size / 2) - 1), (turns));
-  private PlayerTurn playerTurn;
+  private State currentPlayer = new BlackPlays();
+  private PlayerTurn playerTurn = new PlayerTurn(currentPlayer);
+  
 
   @Override
   protected void initializeGame() {
-    playerTurn = new PlayerTurn(currentPlayer);
+    currentPlayer.setPlayerTurn(playerTurn);
     System.out.println("Game initialized. Both sides have 10 moves");
     board.printBoard(); // Print het bord alleen hier bij start
     System.out.println(playerTurn + " is the state");
@@ -32,18 +33,11 @@ class CheckersGameSize8 extends GameTemplate {
     if (moveProxy.makeMove(fromX, fromY, toX, toY, playerTurn.getState())) {
       board.printBoard(); // Alleen printen bij een geldige zet
 
-      if (playerTurn.getState().getName() == "Black") {
-        WhitePlays newState = new WhitePlays(20, 20);
-        playerTurn.changeState(newState);
-      } else {
-        BlackPlays newState = new BlackPlays(20, 20);
-        playerTurn.changeState(newState);
-      }
+      playerTurn.endTurn();
       turns--;
     } else {
       System.out.println("Invalid move. Try again.");
     }
-    System.out.println(playerTurn.getState() + " is the state");
   }
 
   @Override
@@ -53,6 +47,22 @@ class CheckersGameSize8 extends GameTemplate {
         return true;
     }
     return false;
+  }
+
+  protected void endGame() {
+    if (CheckersGame.whitePieces < CheckersGame.blackPieces) {
+      if (turns % 2 == 1) {
+        playerTurn.endTurn();
+      }
+      playerTurn.gameOver();
+    } else if (CheckersGame.blackPieces < CheckersGame.whitePieces) {
+      if (turns % 2 == 0) {
+        playerTurn.endTurn();
+      }
+      playerTurn.gameOver();
+    } else {
+      System.out.println("Game over!");
+    }
   }
 
   public static int boardSize() {
