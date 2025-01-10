@@ -27,9 +27,8 @@ class CheckersGame extends GameTemplate {
     int toX = scanner.nextInt();
     int toY = scanner.nextInt();
 
-    // Pass currentState to moveProxy.makeMove
     if (moveProxy.makeMove(fromX, fromY, toX, toY, playerTurn.getState())) {
-      board.printBoard(); // Alleen printen bij een geldige zet
+      board.printBoard();
 
       playerTurn.endTurn();
     } else {
@@ -39,7 +38,6 @@ class CheckersGame extends GameTemplate {
 
   @Override
   protected boolean isGameOver() {
-    //state opvragen inplaats van boolean
     if (whitePieces == 0 || blackPieces == 0) {
       return true;
     }

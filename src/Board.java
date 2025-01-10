@@ -9,7 +9,7 @@ class Board {
 
   private Board(int size) {
     this.size = size;
-    grid = new char[size][size]; // bord size is nu 10x10
+    grid = new char[size][size];
     initializeBoard();
   }
 
@@ -61,13 +61,11 @@ class Board {
     char piece = grid[fromX][fromY];
     String currentPlayer = (currentState).getName();
 
-    // Controleer of het huidige stuk bij de speler hoort
     if ((currentPlayer.equals("White") && piece != 'W' && piece != 'K') ||
         (currentPlayer.equals("Black") && piece != 'B' && piece != 'k')) {
       return false;
     }
 
-    // Controleer of het doelveld leeg is
     if (grid[toX][toY] != '.') {
       return false;
     }
@@ -75,7 +73,6 @@ class Board {
     int dx = toX - fromX;
     int dy = toY - fromY;
 
-    // Normale beweging voor een normaal stuk
     if ((piece == 'W' && dx == -1 && Math.abs(dy) == 1) ||
         (piece == 'B' && dx == 1 && Math.abs(dy) == 1)) {
       grid[toX][toY] = piece;
@@ -84,14 +81,12 @@ class Board {
       return true;
     }
 
-    // Normale beweging voor een King
     else if ((piece == 'K' || piece == 'k') && Math.abs(dx) == 1 && Math.abs(dy) == 1) {
       grid[toX][toY] = piece;
       grid[fromX][fromY] = '.';
       return true;
     }
 
-    // Slaan
     if (Math.abs(dx) == 2 && Math.abs(dy) == 2) {
       int middleX = fromX + dx / 2;
       int middleY = fromY + dy / 2;

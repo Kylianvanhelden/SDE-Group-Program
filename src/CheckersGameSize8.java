@@ -29,9 +29,8 @@ class CheckersGameSize8 extends GameTemplate {
     int toX = scanner.nextInt();
     int toY = scanner.nextInt();
 
-    // Pass currentState to moveProxy.makeMove
     if (moveProxy.makeMove(fromX, fromY, toX, toY, playerTurn.getState())) {
-      board.printBoard(); // Alleen printen bij een geldige zet
+      board.printBoard();
 
       playerTurn.endTurn();
       turns--;
@@ -42,7 +41,6 @@ class CheckersGameSize8 extends GameTemplate {
 
   @Override
   protected boolean isGameOver() {
-    // Simple game-over condition (can be expanded)
     if (turns <= 0) {
       return true;
     }

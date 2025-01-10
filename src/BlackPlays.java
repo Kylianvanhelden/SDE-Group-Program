@@ -9,7 +9,6 @@ public class BlackPlays extends State {
 
     protected void endTurn() {
         WhitePlays whitePlays = new WhitePlays();
-        //playerTurn.changeState(whitePlays);
         setState(whitePlays);
     }
 

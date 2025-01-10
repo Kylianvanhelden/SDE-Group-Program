@@ -26,7 +26,6 @@ class MoveProxy implements Move {
       return false;
     }
 
-    // Geef de controle door aan de werkelijke 'makeMove' methode van Board
     return board.movePiece(fromX, fromY, toX, toY, state);
   }
 }
