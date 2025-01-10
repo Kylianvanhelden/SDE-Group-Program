@@ -44,7 +44,7 @@ class CheckersGameSize8 extends GameTemplate {
   protected boolean isGameOver() {
     // Simple game-over condition (can be expanded)
     if (turns <= 0) {
-        return true;
+      return true;
     }
     return false;
   }
