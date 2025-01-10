@@ -7,6 +7,8 @@ Kylian van Helden: [Kylianvanhelden](https://github.com/KylianvanHelden)
 
 Atilla Özbey: [AtillaOzbey](https://github.com/AtillaOzbey)
 
+In de commit History is te zien dat Kylian meer commits heeft gedaan, maar Atilla heeft al zijn code in een paar hele grote commits gedaan, ook hebben we samen naast elkaar aan dingen gewerkt op één computer en dingen besproken
+
 ## Design Patterns:
 ### Creational Patterns:
 #### Singleton
